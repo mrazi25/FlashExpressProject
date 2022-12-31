@@ -22,6 +22,13 @@ public class Flash implements TipePengiriman{
     public int getHarga() {
         return harga;
     }
+    
+    @Override
+    public int getHarga(int berat) {
+        if(berat<=10) return harga;
+        else if(berat>10) return harga+5000;
+        else return 0;
+    }
 
     @Override
     public int getEstimasi() {

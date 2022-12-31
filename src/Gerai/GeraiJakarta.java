@@ -11,7 +11,7 @@ import Tipe.TipePengiriman;
  *
  * @author family
  */
-public class GeraiJakarta {
+public class GeraiJakarta implements GeraiInterface{
     private final String nama="Gerai Jakarta";
     private final String alamat="Jl. Pegangsaan Barat, Menteng, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310";
     private TipePengiriman[] jenisPengiriman;
@@ -20,14 +20,17 @@ public class GeraiJakarta {
         this.jenisPengiriman = jenisPengiriman;
     }
 
+    @Override
     public String getNama() {
         return nama;
     }
 
+    @Override
     public String getAlamat() {
         return alamat;
     }
 
+    @Override
     public TipePengiriman[] getJenisPengiriman() {
         return jenisPengiriman;
     }

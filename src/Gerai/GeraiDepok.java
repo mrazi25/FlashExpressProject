@@ -10,7 +10,7 @@ import Tipe.TipePengiriman;
  *
  * @author family
  */
-public class GeraiDepok {
+public class GeraiDepok implements GeraiInterface{
     private final String nama="Gerai Depok";
     private final String alamat="Jl. Raya Sawangan, Mampang, Kec. Pancoran Mas, Kota Depok, Jawa Barat 16436";
     private TipePengiriman[] jenisPengiriman;
@@ -19,14 +19,17 @@ public class GeraiDepok {
         this.jenisPengiriman = jenisPengiriman;
     }
 
+    @Override
     public String getNama() {
         return nama;
     }
 
+    @Override
     public String getAlamat() {
         return alamat;
     }
 
+    @Override
     public TipePengiriman[] getJenisPengiriman() {
         return jenisPengiriman;
     }

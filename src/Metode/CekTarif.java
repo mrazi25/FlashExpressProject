@@ -48,8 +48,8 @@ public class CekTarif {
         return nilaiAsuransi;
     }
 
-    public void setNilaiAsuransi(int nilaiAsuransi) {
-        this.nilaiAsuransi = nilaiAsuransi;
+    public void setNilaiAsuransi(int uang) {
+        this.nilaiAsuransi = (int)(uang*0.1);
     }
 
     public boolean isAsuransi() {
