@@ -1666,7 +1666,6 @@ public class MainMenu extends javax.swing.JFrame {
         jPanel19.setVisible(false);
 
         jProgressBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
-        jProgressBar1.setSize(new java.awt.Dimension(146, 30));
 
         jLabel31.setText("No. Resi");
 
