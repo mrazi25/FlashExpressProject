@@ -10,7 +10,7 @@ import Tipe.TipePengiriman;
  *
  * @author family
  */
-public class GeraiBogor implements GeraiInterface{
+public class GeraiBogor extends Gerai implements GeraiInterface{
     private final String nama="Gerai Bogor";
     private final String alamat="Jl. Babakan, Kec. Bogor Tengah, Kota Bogor, Jawa Barat 16128";
     private TipePengiriman[] jenisPengiriman;

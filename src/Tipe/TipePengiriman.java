@@ -10,7 +10,6 @@ package Tipe;
  */
 public interface TipePengiriman {
     String getNamaJenis();
-    int getHarga();
     int getHarga(int berat);
     int getEstimasi();
 }

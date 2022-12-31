@@ -10,7 +10,7 @@ import Tipe.TipePengiriman;
  *
  * @author family
  */
-public class GeraiPontianak implements PajakLuarJawa, GeraiInterface{
+public class GeraiPontianak extends Gerai implements PajakLuarJawa, GeraiInterface{
     private final String nama="Gerai Pontianak";
     private final String alamat="Jl. Pak Kasih, Tengah, Kec. Pontianak Kota, Kota Pontianak, Kalimantan Barat 78243";
     private TipePengiriman[] jenisPengiriman;
@@ -39,7 +39,7 @@ public class GeraiPontianak implements PajakLuarJawa, GeraiInterface{
     }
 
     @Override
-    public int getHargaLuarJawa(int i) {
-        return jenisPengiriman[i].getHarga()+4000;
+    public int getHargaLuarJawa(int i, int berat) {
+        return jenisPengiriman[i].getHarga(berat)+4000;
     }
 }

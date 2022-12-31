@@ -18,7 +18,6 @@ public class Flash implements TipePengiriman{
         return nama;
     }
 
-    @Override
     public int getHarga() {
         return harga;
     }

@@ -10,7 +10,7 @@ import Tipe.TipePengiriman;
  *
  * @author family
  */
-public class GeraiTangerang implements GeraiInterface{
+public class GeraiTangerang extends Gerai implements GeraiInterface{
     private final String nama="Gerai Tangerang";
     private final String alamat="Jl. Boulevard Bintaro Jaya, Pd. Jaya, Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15220";
     private TipePengiriman[] jenisPengiriman;

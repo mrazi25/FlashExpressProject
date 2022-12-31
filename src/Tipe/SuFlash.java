@@ -18,7 +18,6 @@ public class SuFlash implements TipePengiriman{
         return nama;
     }
 
-    @Override
     public int getHarga() {
         return harga;
     }

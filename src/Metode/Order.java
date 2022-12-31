@@ -36,6 +36,8 @@ public class Order implements Pemesanan{
         this.tujuan = tujuan;
         this.tanggal = tanggal;
     }
+    
+    public Order(){}
 
     @Override
     public String getAsal() {

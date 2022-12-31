@@ -10,16 +10,14 @@ import Gerai.GeraiInterface;
  *
  * @author family
  */
-public class Penerima {
+public class Penerima{
     private String nama;
     private GeraiInterface gerai;
     private String keterangan;
     private String kodePos;
     private String nomerTelepon;
 
-    public Penerima() {
-        
-    }
+    public Penerima() {}
 
     public Penerima(String nama, GeraiInterface gerai, String keterangan, String kodePos, String nomerTelepon) {
         this.nama = nama;
