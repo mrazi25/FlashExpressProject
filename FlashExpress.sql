@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 26, 2022 at 01:35 PM
+-- Generation Time: Dec 31, 2022 at 09:38 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -43,7 +43,95 @@ CREATE TABLE `akun` (
 
 INSERT INTO `akun` (`id`, `nama_lengkap`, `email`, `gender`, `password`, `tanggal_lahir`, `nomor_telepon`) VALUES
 (1, 'Muhammad Razi Rizzardi', 'razirizzardi@gmail.com', 'Pria', '12345678', '2002-07-25', '087878787878'),
+(3, 'Rizvi Hasbi Asibiq', 'RizviAjah@gmail.com', 'Pria', '12345678', ' ', ' '),
 (2, 'Wawan Siswanto', 'wawan12@gmail.com', 'Pria', '12345678', ' ', ' ');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gerai`
+--
+
+CREATE TABLE `gerai` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(20) NOT NULL,
+  `alamat` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `gerai`
+--
+
+INSERT INTO `gerai` (`id`, `nama`, `alamat`) VALUES
+(1, 'Gerai Jakarta', 'Jl. Pegangsaan Barat No.1, RT.1/RW.2, Menteng, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310'),
+(2, 'Gerai Bogor', 'Babakan, Kecamatan Bogor Tengah, Kota Bogor, Jawa Barat'),
+(3, 'Gerai Depok', 'Jl. Raya Sawangan No.20, RW.6, Mampang, Kec. Pancoran Mas, Kota Depok, Jawa Barat 16436'),
+(4, 'Gerai Tangerang', 'Jl. Boulevard Bintaro Jaya, Pd. Jaya, Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15220'),
+(5, 'Gerai Bekasi', 'Jl. Harapan Indah Boulevard, RT.005/RW.010, Medan Satria, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17132');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penerima`
+--
+
+CREATE TABLE `penerima` (
+  `resi_pesanan` varchar(10) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `nomer_telepon` varchar(15) NOT NULL,
+  `alamat` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `penerima`
+--
+
+INSERT INTO `penerima` (`resi_pesanan`, `nama`, `nomer_telepon`, `alamat`) VALUES
+('TAN4912', 'Darma', '6543236743456', '43212Jakarta');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pengirim`
+--
+
+CREATE TABLE `pengirim` (
+  `resi_pesanan` varchar(10) NOT NULL,
+  `nama` varchar(100) NOT NULL,
+  `nomer_telepon` varchar(15) NOT NULL,
+  `alamat` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pengirim`
+--
+
+INSERT INTO `pengirim` (`resi_pesanan`, `nama`, `nomer_telepon`, `alamat`) VALUES
+('TAN4912', 'Susilo', '123456789654', '12345Jakarta');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pesanan`
+--
+
+CREATE TABLE `pesanan` (
+  `resi` varchar(10) NOT NULL,
+  `tipe_service` varchar(20) NOT NULL,
+  `asal` text NOT NULL,
+  `tujuan` text NOT NULL,
+  `tanggal` varchar(15) NOT NULL,
+  `harga_total` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pesanan`
+--
+
+INSERT INTO `pesanan` (`resi`, `tipe_service`, `asal`, `tujuan`, `tanggal`, `harga_total`) VALUES
+(' DE5227', 'SuFlash', 'Jakarta', 'Depok', '2022-12-31', 20000),
+(' JA2900', 'SuFlash', 'Jakarta', 'Jakarta', '2022-12-31', 15000),
+('TAN4912', 'SuFlash', 'Jakarta', 'Tangerang', '2023-01-02', 20000);
 
 -- --------------------------------------------------------
 
@@ -76,6 +164,30 @@ ALTER TABLE `akun`
   ADD UNIQUE KEY `id` (`id`);
 
 --
+-- Indexes for table `gerai`
+--
+ALTER TABLE `gerai`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `penerima`
+--
+ALTER TABLE `penerima`
+  ADD KEY `resi_pesanan` (`resi_pesanan`);
+
+--
+-- Indexes for table `pengirim`
+--
+ALTER TABLE `pengirim`
+  ADD KEY `resi_pesanan` (`resi_pesanan`);
+
+--
+-- Indexes for table `pesanan`
+--
+ALTER TABLE `pesanan`
+  ADD PRIMARY KEY (`resi`);
+
+--
 -- Indexes for table `profile_pict`
 --
 ALTER TABLE `profile_pict`
@@ -89,11 +201,29 @@ ALTER TABLE `profile_pict`
 -- AUTO_INCREMENT for table `akun`
 --
 ALTER TABLE `akun`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `gerai`
+--
+ALTER TABLE `gerai`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `penerima`
+--
+ALTER TABLE `penerima`
+  ADD CONSTRAINT `penerima_ibfk_1` FOREIGN KEY (`resi_pesanan`) REFERENCES `pesanan` (`resi`);
+
+--
+-- Constraints for table `pengirim`
+--
+ALTER TABLE `pengirim`
+  ADD CONSTRAINT `pengirim_ibfk_1` FOREIGN KEY (`resi_pesanan`) REFERENCES `pesanan` (`resi`);
 
 --
 -- Constraints for table `profile_pict`
