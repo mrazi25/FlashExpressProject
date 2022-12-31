@@ -272,6 +272,7 @@ public class LoginPage extends javax.swing.JFrame {
                 mainFrame.setEmailLogin(emailInput.getText());
                 mainFrame.setLoginStatus(true);
                 mainFrame.getLoginLabel().setVisible(false);
+                mainFrame.getLogoutLabel().setVisible(true);
                 mainFrame.getProfilePicture1().setVisible(true);
                 mainFrame.putDataToTextField();
                 this.dispose();

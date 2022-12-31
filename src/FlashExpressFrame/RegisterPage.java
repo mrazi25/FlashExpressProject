@@ -308,19 +308,25 @@ public class RegisterPage extends javax.swing.JFrame {
                 String selectSQL = "SELECT * FROM akun WHERE email='"+emailInput.getText()+"' AND password='"+passwordInput.getText()+"'";
                 db.setRs(db.getStm().executeQuery(selectSQL));
                 if((db.getRs().next() && emailInput.getText().equals(db.getRs().getString("email"))) || !db.getRs().next()){
+                    if(inputName.getText().equals("Nama Lengkap")||emailInput.getText().equals("Email")||jComboBox1.getSelectedIndex()==0){
+                        JOptionPane.showMessageDialog(null, "Data diri belum lengkap", "Warning", JOptionPane.ERROR_MESSAGE);
+                    }else if(passwordInput.getText().equals("Password")||passwordInput.getText().length()<8){
+                        JOptionPane.showMessageDialog(null, "Data diri belum lengkap", "Warning", JOptionPane.ERROR_MESSAGE);
+                    }else{
                         db.setPst(db.getConn().prepareStatement("INSERT INTO akun (nama_lengkap, email, gender, password) VALUES (?, ?, ?, ?)"));
                         db.getPst().setString(1, inputName.getText());
                         db.getPst().setString(2, emailInput.getText());
                         db.getPst().setString(3, (String)jComboBox1.getSelectedItem());
                         db.getPst().setString(4, passwordInput.getText());
-                        
+
                         db.getPst().execute();
                         db.getConn().close();
                         JOptionPane.showMessageDialog(null, "Registrasi berhasil", "Message", JOptionPane.INFORMATION_MESSAGE);
                         toLogin();
                         this.dispose();
+                    }
                 }else{
-                        JOptionPane.showMessageDialog(null, "username ini sudah terpakai", "Warning", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "username ini sudah terpakai", "Warning", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
