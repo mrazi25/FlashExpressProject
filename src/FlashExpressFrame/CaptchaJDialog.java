@@ -154,8 +154,8 @@ public class CaptchaJDialog extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(captchaCheck()){
-            parent.setVisible(true);
             this.dispose();
+            parent.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Captcha salah!");
         }

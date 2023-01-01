@@ -266,8 +266,9 @@ public class LoginPage extends javax.swing.JFrame {
 
     private void masukButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masukButtonActionPerformed
         try {
+            Login login = new Login();
             db.setRs(db.getStm().executeQuery("SELECT * FROM akun WHERE email='"+emailInput.getText()+"' AND password='"+passwordInput.getText()+"'"));
-            if(db.getRs().next() && emailInput.getText().equals(db.getRs().getString("email")) && passwordInput.getText().equals(db.getRs().getString("password"))){
+            if(db.getRs().next() && login.cekData(emailInput.getText(), db.getRs().getString("email")) && login.cekData(passwordInput.getText(), db.getRs().getString("password"))){
                 JOptionPane.showMessageDialog(null, "Login Success", "Message", JOptionPane.INFORMATION_MESSAGE);
                 mainFrame.setEmailLogin(emailInput.getText());
                 mainFrame.setLoginStatus(true);

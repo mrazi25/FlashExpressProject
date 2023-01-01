@@ -2701,7 +2701,7 @@ public class MainMenu extends javax.swing.JFrame {
         }
         if(nama.equals("")||kota.equals("")||kodePos.equals("")||ket.equals("")){
             JOptionPane.showMessageDialog(null, "Data belum lengkap!", "Error", JOptionPane.ERROR_MESSAGE);
-        }else if(metodePengiriman.equals("Pilih Kota")){
+        }else if(metodePengiriman.equals("")){
             JOptionPane.showMessageDialog(null, "Metode pengiriman belum di pilih!", "Error", JOptionPane.ERROR_MESSAGE);
         }else if(!isNumeric(noTelpPengirim)||!isNumeric(kodePos)){
             JOptionPane.showMessageDialog(null, "Nomor Telepon dan Kode Pos harus berupa angka!", "Error", JOptionPane.ERROR_MESSAGE);

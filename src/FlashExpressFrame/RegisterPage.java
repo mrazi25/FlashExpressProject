@@ -307,7 +307,8 @@ public class RegisterPage extends javax.swing.JFrame {
         try {
                 String selectSQL = "SELECT * FROM akun WHERE email='"+emailInput.getText()+"' AND password='"+passwordInput.getText()+"'";
                 db.setRs(db.getStm().executeQuery(selectSQL));
-                if((db.getRs().next() && emailInput.getText().equals(db.getRs().getString("email"))) || !db.getRs().next()){
+                Register register =new Register();
+                if((db.getRs().next() && register.cekData(emailInput.getText(), db.getRs().getString("email"))) || !db.getRs().next()){
                     if(inputName.getText().equals("Nama Lengkap")||emailInput.getText().equals("Email")||jComboBox1.getSelectedIndex()==0){
                         JOptionPane.showMessageDialog(null, "Data diri belum lengkap", "Warning", JOptionPane.ERROR_MESSAGE);
                     }else if(passwordInput.getText().equals("Password")||passwordInput.getText().length()<8){
