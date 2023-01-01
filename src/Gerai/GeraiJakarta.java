@@ -12,22 +12,19 @@ import Tipe.TipePengiriman;
  * @author family
  */
 public class GeraiJakarta extends Gerai implements GeraiInterface{
-    private final String nama="Gerai Jakarta";
-    private final String alamat="Jl. Pegangsaan Barat, Menteng, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310";
+    private final String NAMA_GERAI="Gerai Jakarta";
+    private final int KODE_GERAI=14;
+    private String alamat="Jl. Pegangsaan Barat, Menteng, Kec. Menteng, Kota Jakarta Pusat, Daerah Khusus Ibukota Jakarta 10310";
     private TipePengiriman[] jenisPengiriman;
-    
-    public GeraiJakarta(TipePengiriman[] jenisPengiriman) {
-        this.jenisPengiriman = jenisPengiriman;
-    }
-
-    @Override
-    public String getNama() {
-        return nama;
-    }
 
     @Override
     public String getAlamat() {
         return alamat;
+    }
+
+    @Override
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
     }
 
     @Override
@@ -36,6 +33,20 @@ public class GeraiJakarta extends Gerai implements GeraiInterface{
     }
 
     public void setJenisPengiriman(TipePengiriman[] jenisPengiriman) {
+        this.jenisPengiriman = jenisPengiriman;
+    }
+
+    @Override
+    public String getNAMA_GERAI() {
+        return NAMA_GERAI;
+    }
+
+    public int getKODE_GERAI() {
+        return KODE_GERAI;
+    }
+    
+    public GeraiJakarta(TipePengiriman[] jenisPengiriman, String alamat) {
+        super(alamat);
         this.jenisPengiriman = jenisPengiriman;
     }
 }

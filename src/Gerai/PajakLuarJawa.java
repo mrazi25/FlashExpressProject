@@ -9,5 +9,5 @@ package Gerai;
  * @author family
  */
 public interface PajakLuarJawa {
-    int getHargaLuarJawa(int i, int berat);
+    int getHargaLuarJawa(int i, int berat, int asuransi);
 }

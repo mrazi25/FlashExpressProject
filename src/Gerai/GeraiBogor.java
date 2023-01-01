@@ -11,17 +11,18 @@ import Tipe.TipePengiriman;
  * @author family
  */
 public class GeraiBogor extends Gerai implements GeraiInterface{
-    private final String nama="Gerai Bogor";
-    private final String alamat="Jl. Babakan, Kec. Bogor Tengah, Kota Bogor, Jawa Barat 16128";
+    private final String NAMA_GERAI="Gerai Bogor";
+    private final int KODE_GERAI = 12;
+    private String alamat="Jl. Babakan, Kec. Bogor Tengah, Kota Bogor, Jawa Barat 16128";
     private TipePengiriman[] jenisPengiriman;
-    
-    public GeraiBogor(TipePengiriman[] jenisPengiriman) {
-        this.jenisPengiriman = jenisPengiriman;
-    }
 
     @Override
-    public String getNama() {
-        return nama;
+    public String getNAMA_GERAI() {
+        return NAMA_GERAI;
+    }
+
+    public int getKODE_GERAI() {
+        return KODE_GERAI;
     }
 
     @Override
@@ -30,6 +31,10 @@ public class GeraiBogor extends Gerai implements GeraiInterface{
     }
 
     @Override
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
     public TipePengiriman[] getJenisPengiriman() {
         return jenisPengiriman;
     }
@@ -37,4 +42,9 @@ public class GeraiBogor extends Gerai implements GeraiInterface{
     public void setJenisPengiriman(TipePengiriman[] jenisPengiriman) {
         this.jenisPengiriman = jenisPengiriman;
     }
+
+    public GeraiBogor(TipePengiriman[] jenisPengiriman, String nama) {
+        super(nama);
+        this.jenisPengiriman = jenisPengiriman;
+    } 
 }

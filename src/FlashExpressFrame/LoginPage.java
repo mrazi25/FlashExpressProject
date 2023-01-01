@@ -271,6 +271,7 @@ public class LoginPage extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Login Success", "Message", JOptionPane.INFORMATION_MESSAGE);
                 mainFrame.setEmailLogin(emailInput.getText());
                 mainFrame.setLoginStatus(true);
+                mainFrame.setEmailLogin(emailInput.getText());
                 mainFrame.getLoginLabel().setVisible(false);
                 mainFrame.getLogoutLabel().setVisible(true);
                 mainFrame.getProfilePicture1().setVisible(true);

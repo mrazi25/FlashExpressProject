@@ -11,25 +11,28 @@ import Tipe.TipePengiriman;
  * @author family
  */
 public class GeraiBekasi extends Gerai implements GeraiInterface{
-    private final String nama="Gerai Bekasi";
-    private final String alamat="Jl. Harapan Indah Boulevard, Medan Satria, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17132";
+    private final String NAMA_GERAI="Gerai Bekasi";
+    private final int KODE_GERAI = 11;
+    private String alamat="Jl. Harapan Indah Boulevard, Medan Satria, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17132";
     private TipePengiriman[] jenisPengiriman;
-    
-    public GeraiBekasi(TipePengiriman[] jenisPengiriman) {
-        this.jenisPengiriman = jenisPengiriman;
-    }
 
     @Override
-    public String getNama() {
-        return nama;
+    public String getNAMA_GERAI() {
+        return NAMA_GERAI;
     }
 
-    @Override
+    public int getKODE_GERAI() {
+        return KODE_GERAI;
+    }
+
     public String getAlamat() {
         return alamat;
     }
 
-    @Override
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
+
     public TipePengiriman[] getJenisPengiriman() {
         return jenisPengiriman;
     }
@@ -37,4 +40,11 @@ public class GeraiBekasi extends Gerai implements GeraiInterface{
     public void setJenisPengiriman(TipePengiriman[] jenisPengiriman) {
         this.jenisPengiriman = jenisPengiriman;
     }
+    
+    public GeraiBekasi(TipePengiriman[] jenisPengiriman, String alamat) {
+        super(alamat);
+        this.jenisPengiriman = jenisPengiriman;
+    }
+
+    
 }

@@ -11,5 +11,6 @@ package Tipe;
 public interface TipePengiriman {
     String getNamaJenis();
     int getHarga(int berat);
+    int getHarga(int berat, int asuransi);
     int getEstimasi();
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 31, 2022 at 09:38 AM
+-- Generation Time: Jan 01, 2023 at 05:05 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -76,18 +76,11 @@ INSERT INTO `gerai` (`id`, `nama`, `alamat`) VALUES
 --
 
 CREATE TABLE `penerima` (
-  `resi_pesanan` varchar(10) NOT NULL,
+  `resi_pesanan` varchar(20) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `nomer_telepon` varchar(15) NOT NULL,
   `alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `penerima`
---
-
-INSERT INTO `penerima` (`resi_pesanan`, `nama`, `nomer_telepon`, `alamat`) VALUES
-('TAN4912', 'Darma', '6543236743456', '43212Jakarta');
 
 -- --------------------------------------------------------
 
@@ -96,18 +89,11 @@ INSERT INTO `penerima` (`resi_pesanan`, `nama`, `nomer_telepon`, `alamat`) VALUE
 --
 
 CREATE TABLE `pengirim` (
-  `resi_pesanan` varchar(10) NOT NULL,
+  `resi_pesanan` varchar(20) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `nomer_telepon` varchar(15) NOT NULL,
   `alamat` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pengirim`
---
-
-INSERT INTO `pengirim` (`resi_pesanan`, `nama`, `nomer_telepon`, `alamat`) VALUES
-('TAN4912', 'Susilo', '123456789654', '12345Jakarta');
 
 -- --------------------------------------------------------
 
@@ -116,22 +102,16 @@ INSERT INTO `pengirim` (`resi_pesanan`, `nama`, `nomer_telepon`, `alamat`) VALUE
 --
 
 CREATE TABLE `pesanan` (
-  `resi` varchar(10) NOT NULL,
+  `resi` varchar(20) NOT NULL,
+  `email_akun` varchar(30) NOT NULL,
   `tipe_service` varchar(20) NOT NULL,
   `asal` text NOT NULL,
   `tujuan` text NOT NULL,
+  `nama_barang` varchar(20) NOT NULL,
+  `berat` int(11) NOT NULL,
   `tanggal` varchar(15) NOT NULL,
   `harga_total` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `pesanan`
---
-
-INSERT INTO `pesanan` (`resi`, `tipe_service`, `asal`, `tujuan`, `tanggal`, `harga_total`) VALUES
-(' DE5227', 'SuFlash', 'Jakarta', 'Depok', '2022-12-31', 20000),
-(' JA2900', 'SuFlash', 'Jakarta', 'Jakarta', '2022-12-31', 15000),
-('TAN4912', 'SuFlash', 'Jakarta', 'Tangerang', '2023-01-02', 20000);
 
 -- --------------------------------------------------------
 
@@ -173,7 +153,7 @@ ALTER TABLE `gerai`
 -- Indexes for table `penerima`
 --
 ALTER TABLE `penerima`
-  ADD KEY `resi_pesanan` (`resi_pesanan`);
+  ADD UNIQUE KEY `resi_pesanan` (`resi_pesanan`);
 
 --
 -- Indexes for table `pengirim`
@@ -185,7 +165,8 @@ ALTER TABLE `pengirim`
 -- Indexes for table `pesanan`
 --
 ALTER TABLE `pesanan`
-  ADD PRIMARY KEY (`resi`);
+  ADD PRIMARY KEY (`resi`),
+  ADD KEY `email_akun` (`email_akun`);
 
 --
 -- Indexes for table `profile_pict`
@@ -224,6 +205,12 @@ ALTER TABLE `penerima`
 --
 ALTER TABLE `pengirim`
   ADD CONSTRAINT `pengirim_ibfk_1` FOREIGN KEY (`resi_pesanan`) REFERENCES `pesanan` (`resi`);
+
+--
+-- Constraints for table `pesanan`
+--
+ALTER TABLE `pesanan`
+  ADD CONSTRAINT `pesanan_ibfk_1` FOREIGN KEY (`email_akun`) REFERENCES `akun` (`email`);
 
 --
 -- Constraints for table `profile_pict`

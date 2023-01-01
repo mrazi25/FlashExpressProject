@@ -18,14 +18,19 @@ public class Reguler implements TipePengiriman{
         return nama;
     }
 
+    @Override
+    public int getHarga(int berat) {
+        return harga+5000;
+    }
+    
     public int getHarga() {
         return harga;
     }
     
     @Override
-    public int getHarga(int berat) {
-        if(berat<=10) return harga;
-        else if(berat>10) return harga+5000;
+    public int getHarga(int berat, int asuransi) {
+        if(berat<=10) return harga+asuransi;
+        else if(berat>10) return harga+5000+asuransi;
         else return 0;
     }
 

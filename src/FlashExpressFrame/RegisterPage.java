@@ -313,17 +313,21 @@ public class RegisterPage extends javax.swing.JFrame {
                     }else if(passwordInput.getText().equals("Password")||passwordInput.getText().length()<8){
                         JOptionPane.showMessageDialog(null, "Data diri belum lengkap", "Warning", JOptionPane.ERROR_MESSAGE);
                     }else{
-                        db.setPst(db.getConn().prepareStatement("INSERT INTO akun (nama_lengkap, email, gender, password) VALUES (?, ?, ?, ?)"));
-                        db.getPst().setString(1, inputName.getText());
-                        db.getPst().setString(2, emailInput.getText());
-                        db.getPst().setString(3, (String)jComboBox1.getSelectedItem());
-                        db.getPst().setString(4, passwordInput.getText());
+                        CaptchaJDialog captchaJDialog = new CaptchaJDialog(this, true);
+                        captchaJDialog.setVisible(true);
+                        if(captchaJDialog.captchaCheck()){
+                            db.setPst(db.getConn().prepareStatement("INSERT INTO akun (nama_lengkap, email, gender, password) VALUES (?, ?, ?, ?)"));
+                            db.getPst().setString(1, inputName.getText());
+                            db.getPst().setString(2, emailInput.getText());
+                            db.getPst().setString(3, (String)jComboBox1.getSelectedItem());
+                            db.getPst().setString(4, passwordInput.getText());
 
-                        db.getPst().execute();
-                        db.getConn().close();
-                        JOptionPane.showMessageDialog(null, "Registrasi berhasil", "Message", JOptionPane.INFORMATION_MESSAGE);
-                        toLogin();
-                        this.dispose();
+                            db.getPst().execute();
+                            db.getConn().close();
+                            JOptionPane.showMessageDialog(null, "Registrasi berhasil", "Message", JOptionPane.INFORMATION_MESSAGE);
+                            toLogin();
+                            this.dispose();
+                        }
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "username ini sudah terpakai", "Warning", JOptionPane.ERROR_MESSAGE);

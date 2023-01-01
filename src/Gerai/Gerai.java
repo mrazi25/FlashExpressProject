@@ -9,5 +9,25 @@ package Gerai;
  * @author family
  */
 public class Gerai {
+    private final int KODE_PERUSAHAAN = 107;
+    private String alamat;
+
+    public Gerai(String alamat) {
+        this.alamat = alamat;
+    }
     
+    public Gerai() {
+        
+    }
+    public int getKode() {
+        return KODE_PERUSAHAAN;
+    }
+
+    public String getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(String alamat) {
+        this.alamat = alamat;
+    }
 }

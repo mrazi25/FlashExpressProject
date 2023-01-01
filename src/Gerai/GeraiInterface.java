@@ -11,7 +11,7 @@ import Tipe.TipePengiriman;
  * @author family
  */
 public interface GeraiInterface {
-    public String getNama();
+    public String getNAMA_GERAI();
     public String getAlamat();
     public TipePengiriman[] getJenisPengiriman();
 }

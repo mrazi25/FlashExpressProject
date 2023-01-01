@@ -4,13 +4,11 @@
  */
 package Metode;
 
-import java.util.Date;
-
 /**
  *
  * @author family
  */
-public class Order implements Pemesanan{
+public class Order{
     private String resi;
     private Penerima penerima;
     private Pengirim pengirim;
@@ -39,7 +37,6 @@ public class Order implements Pemesanan{
     
     public Order(){}
 
-    @Override
     public String getAsal() {
         return asal;
     }
@@ -48,7 +45,6 @@ public class Order implements Pemesanan{
         this.asal = asal;
     }
 
-    @Override
     public String getTujuan() {
         return tujuan;
     }
@@ -57,7 +53,6 @@ public class Order implements Pemesanan{
         this.tujuan = tujuan;
     }
 
-    @Override
     public String getResi() {
         return resi;
     }
@@ -66,7 +61,6 @@ public class Order implements Pemesanan{
         this.resi = resi;
     }
 
-    @Override
     public String getTanggal() {
         return tanggal;
     }
