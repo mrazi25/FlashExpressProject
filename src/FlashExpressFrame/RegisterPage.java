@@ -65,6 +65,7 @@ public class RegisterPage extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Register");
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -313,7 +314,7 @@ public class RegisterPage extends javax.swing.JFrame {
                     if(inputName.getText().equals("Nama Lengkap")||emailInput.getText().equals("Email")||jComboBox1.getSelectedIndex()==0){
                         JOptionPane.showMessageDialog(null, "Data diri belum lengkap", "Warning", JOptionPane.ERROR_MESSAGE);
                     }else if(passwordInput.getText().equals("Password")||passwordInput.getText().length()<8){
-                        JOptionPane.showMessageDialog(null, "Data diri belum lengkap", "Warning", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Password kurang dari 8 karakter", "Warning", JOptionPane.ERROR_MESSAGE);
                     }else{
                         CaptchaJDialog captchaJDialog = new CaptchaJDialog(this, true);
                         captchaJDialog.setVisible(true);

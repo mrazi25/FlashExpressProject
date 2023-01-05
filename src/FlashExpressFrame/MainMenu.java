@@ -334,6 +334,7 @@ public class MainMenu extends javax.swing.JFrame {
         jLabel94 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Flash Express");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
@@ -423,11 +424,11 @@ public class MainMenu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Service", "Berat", "Harga", "Asuransi"
+                "Service", "Berat", "Harga", "Asuransi", "Estimasi"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2503,7 +2504,7 @@ public class MainMenu extends javax.swing.JFrame {
                     db.getPst().setString(2, filePath);
                     db.getPst().setBlob(3, istrm);
                     db.getPst().execute();
-                        JOptionPane.showMessageDialog(null, "Data Berhasil di tambahkan dan di simpan", "Message", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Data Berhasil di tambahkan dan di simpan", "Message", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -2599,7 +2600,7 @@ public class MainMenu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nominal asuransi belum diisi");
             }else{
                 DefaultTableModel format = new DefaultTableModel(
-                    new String[]{"Service", "Berat", "Harga", "Asuransi"},0
+                    new String[]{"Service", "Berat", "Harga", "Asuransi", "Estimasi"},0
                 );
                 new Thread(){
                     @Override
@@ -2614,12 +2615,12 @@ public class MainMenu extends javax.swing.JFrame {
                 
                 if(geraiInterface instanceof GeraiPontianak){
                     System.out.print("ponti");
-                    format.addRow(new Object[]{flash.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(((GeraiPontianak)gerai[5]).getHargaLuarJawa(0, berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi())});
-                    format.addRow(new Object[]{reg.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(((GeraiPontianak)gerai[5]).getHargaLuarJawa(1, berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi())});
+                    format.addRow(new Object[]{flash.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(((GeraiPontianak)gerai[5]).getHargaLuarJawa(0, berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi()), "3 hari"});
+                    format.addRow(new Object[]{reg.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(((GeraiPontianak)gerai[5]).getHargaLuarJawa(1, berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi()), "7 hari"});
                 }else{
-                    format.addRow(new Object[]{suFlash.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(geraiInterface.getJenisPengiriman()[0].getHarga(berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi())});
-                    format.addRow(new Object[]{flash.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(geraiInterface.getJenisPengiriman()[1].getHarga(berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi())});
-                    format.addRow(new Object[]{reg.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(geraiInterface.getJenisPengiriman()[2].getHarga(berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi())});
+                    format.addRow(new Object[]{suFlash.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(geraiInterface.getJenisPengiriman()[0].getHarga(berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi()), "1 hari"});
+                    format.addRow(new Object[]{flash.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(geraiInterface.getJenisPengiriman()[1].getHarga(berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi()), "3 hari"});
+                    format.addRow(new Object[]{reg.getNamaJenis(), Integer.toString(berat)+" Kg", Integer.toString(geraiInterface.getJenisPengiriman()[2].getHarga(berat)), "Rp. "+Integer.toString(cek.getNilaiAsuransi()), "7 hari"});
                 }
                 jTable1.setModel(format);
             }
@@ -2968,7 +2969,7 @@ public class MainMenu extends javax.swing.JFrame {
             jLabel52.setText("Rp. "+biayaKirim);
             jLabel53.setText("Rp. "+(biayaAsuransi+biayaKirim));
         }catch(NumberFormatException e){
-            JOptionPane.showMessageDialog(null, "Biaya asuransi dan Kode Pos harus berupa angka!", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Berat atau Nilai barang harus angka!", "Error", JOptionPane.ERROR_MESSAGE);
         }catch(ArrayIndexOutOfBoundsException e){
             JOptionPane.showMessageDialog(null, "Jenis layanan belum dipilih!", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -3051,9 +3052,10 @@ public class MainMenu extends javax.swing.JFrame {
                         order = new Order(this.getRandomResi(gerai), penerima, pengirim, barangOrder, asal, tujuan, tanggalString, tipeService, penerima.getGerai().getJenisPengiriman()[index].getHarga(Integer.parseInt(berat)));
                     }
                 }
-                CaptchaJDialog captchaJDialog = new CaptchaJDialog(this, true);
-                captchaJDialog.setVisible(true);
-                if(captchaJDialog.captchaCheck()){
+                if(buttonGroup1.isSelected(jCheckBox3.getModel())||buttonGroup1.isSelected(jCheckBox4.getModel())||buttonGroup1.isSelected(jCheckBox5.getModel())){
+                    CaptchaJDialog captchaJDialog = new CaptchaJDialog(this, true);
+                    captchaJDialog.setVisible(true);
+                    if(captchaJDialog.captchaCheck()){
                     db.setPst(db.getConn().prepareStatement("INSERT INTO pesanan (email_akun, resi, tipe_service, asal, tujuan, nama_barang, berat, tanggal, harga_total) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"));
                     db.getPst().setString(1, this.emailLogin);
                     db.getPst().setString(2, order.getResi());
@@ -3092,6 +3094,7 @@ public class MainMenu extends javax.swing.JFrame {
                         sqle.printStackTrace();
                     }
                 }
+                } 
             } catch (SQLException sqle) {
                 sqle.printStackTrace();
             } catch (NumberFormatException nx){
@@ -3102,6 +3105,7 @@ public class MainMenu extends javax.swing.JFrame {
 
     private void jLabel82MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel82MouseClicked
         jPanel19.setVisible(false);
+        jTextField7.setText("");
         jPanel13.setVisible(false);
         jPanel3.setVisible(true);
     }//GEN-LAST:event_jLabel82MouseClicked
