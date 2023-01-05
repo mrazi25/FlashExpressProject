@@ -1,4 +1,4 @@
-package FlashExpressFrame;
+package Metode;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -9,12 +9,7 @@ package FlashExpressFrame;
  *
  * @author family
  */
-public class Register implements LayananPenambahanData{
-
-    @Override
-    public Object[] menambahData() {
-        return new Object[]{};
-    }
+public class Login implements LayananAutentifikasiData{
 
     @Override
     public boolean cekData(String email_1, String email_2) {

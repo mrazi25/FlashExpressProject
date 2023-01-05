@@ -45,6 +45,11 @@ public class GeraiPontianak extends Gerai implements PajakLuarJawa, GeraiInterfa
         return jenisPengiriman[i].getHarga(berat, asuransi)+4000;
     }
     
+    @Override
+    public int getHargaLuarJawa(int i, int berat) {
+        return jenisPengiriman[i].getHarga(berat)+4000;
+    }
+    
     public GeraiPontianak(TipePengiriman[] jenisPengiriman, String alamat) {
         super(alamat);
         this.jenisPengiriman = jenisPengiriman;

@@ -10,4 +10,5 @@ package Gerai;
  */
 public interface PajakLuarJawa {
     int getHargaLuarJawa(int i, int berat, int asuransi);
+    int getHargaLuarJawa(int i, int berat);
 }

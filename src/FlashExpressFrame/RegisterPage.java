@@ -1,6 +1,7 @@
 package FlashExpressFrame;
 
 
+import Metode.Register;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
