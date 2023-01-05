@@ -3094,6 +3094,8 @@ public class MainMenu extends javax.swing.JFrame {
                         sqle.printStackTrace();
                     }
                 }
+                }else{
+                    JOptionPane.showMessageDialog(null, "Metode pembayaran belum dipilih", "Error", JOptionPane.ERROR_MESSAGE);
                 } 
             } catch (SQLException sqle) {
                 sqle.printStackTrace();
