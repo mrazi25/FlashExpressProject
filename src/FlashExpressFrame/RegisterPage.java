@@ -64,7 +64,6 @@ public class RegisterPage extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Register");
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -307,10 +306,10 @@ public class RegisterPage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         try {
-                String selectSQL = "SELECT * FROM akun WHERE email='"+emailInput.getText()+"' AND password='"+passwordInput.getText()+"'";
+                String selectSQL = "SELECT * FROM akun WHERE email='"+emailInput.getText()+"'";
                 db.setRs(db.getStm().executeQuery(selectSQL));
                 Register register =new Register();
-                if((db.getRs().next() && register.cekData(emailInput.getText(), db.getRs().getString("email"))) || !db.getRs().next()){
+                
                     if(inputName.getText().equals("Nama Lengkap")||emailInput.getText().equals("Email")||jComboBox1.getSelectedIndex()==0){
                         JOptionPane.showMessageDialog(null, "Data diri belum lengkap", "Warning", JOptionPane.ERROR_MESSAGE);
                     }else if(passwordInput.getText().equals("Password")||passwordInput.getText().length()<8){
@@ -324,17 +323,23 @@ public class RegisterPage extends javax.swing.JFrame {
                             db.getPst().setString(2, emailInput.getText());
                             db.getPst().setString(3, (String)jComboBox1.getSelectedItem());
                             db.getPst().setString(4, passwordInput.getText());
-
-                            db.getPst().execute();
-                            db.getConn().close();
-                            JOptionPane.showMessageDialog(null, "Registrasi berhasil", "Message", JOptionPane.INFORMATION_MESSAGE);
-                            toLogin();
-                            this.dispose();
+                            int validasi=0;
+                            try{
+                                 validasi = db.getPst().executeUpdate();
+                            }catch(Exception e){
+                                
+                            }
+                            
+                            if(validasi!=0){
+                                db.getConn().close();
+                                JOptionPane.showMessageDialog(null, "Registrasi berhasil", "Message", JOptionPane.INFORMATION_MESSAGE);
+                                toLogin();
+                                this.dispose();
+                            }else{
+                                JOptionPane.showMessageDialog(null, "username ini sudah terpakai", "Warning", JOptionPane.ERROR_MESSAGE);
+                            }
                         }
                     }
-                }else{
-                    JOptionPane.showMessageDialog(null, "username ini sudah terpakai", "Warning", JOptionPane.ERROR_MESSAGE);
-                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
